@@ -1,4 +1,4 @@
-const { World, Engine, Runner, Render, Bodies } = Matter;
+const { World, Engine, Runner, Render, Bodies, MouseConstraint, Mouse } = Matter;
 
 const engine = Engine.create();
 const { world } = engine;
@@ -12,6 +12,13 @@ const render = Render.create({
 });
 Render.run(render);
 Runner.run(Runner.create(), engine);
+
+World.add(
+	world,
+	MouseConstraint.create(engine, {
+		mouse: Mouse.create(render.canvas),
+	}),
+);
 
 // Creating Rectangular Walls
 const walls = [
