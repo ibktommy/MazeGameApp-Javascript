@@ -10,6 +10,7 @@ const render = Render.create({
 	element: document.body,
 	engine: engine,
 	options: {
+		wireframes: false,
 		width: 800,
 		height: 600,
 	},
