@@ -1,5 +1,9 @@
 const { World, Engine, Runner, Render, Bodies, MouseConstraint, Mouse } = Matter;
 
+// Setting our width and height Variable
+const width = 800;
+const height = 600;
+
 const engine = Engine.create();
 const { world } = engine;
 const render = Render.create({
@@ -32,6 +36,10 @@ World.add(world, walls);
 
 // Creating Random Shapes
 
-for (let i = 0; i < 20; i++) {
-	World.add(world, Bodies.rectangle(200, 200, 50, 50));
+for (let i = 0; i < 30; i++) {
+	if (Math.random() > 0.5) {
+		World.add(world, Bodies.rectangle(Math.random() * width, Math.random() * height, 50, 50));
+	} else {
+		World.add(world, Bodies.circle(Math.random() * width, Math.random() * height, 35));
+	}
 }
