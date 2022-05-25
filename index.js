@@ -46,4 +46,9 @@ const horizontal = Array(cells - 1)
 	.fill(null)
 	.map(() => Array(cells).fill(false));
 
-console.log(vertical, horizontal);
+const startRow = Math.floor(Math.random() * cells);
+const startColumn = Math.floor(Math.random() * cells);
+
+const stepThroughCell = (row, column) => {};
+
+stepThroughCell(startRow, startColumn);
