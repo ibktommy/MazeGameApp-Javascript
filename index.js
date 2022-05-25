@@ -4,6 +4,9 @@ const { World, Engine, Runner, Render, Bodies } = Matter;
 const width = 600;
 const height = 600;
 
+// Making our Grid Array Values dynamic
+const cells = 3;
+
 const engine = Engine.create();
 const { world } = engine;
 const render = Render.create({
@@ -29,18 +32,18 @@ const walls = [
 World.add(world, walls);
 
 // Generating the Maze
-const grid = Array(3)
+const grid = Array(cells)
 	.fill(null)
-	.map(() => Array(3).fill(false));
+	.map(() => Array(cells).fill(false));
 
 // Generate Vertical Columns
-const vertical = Array(3)
+const vertical = Array(cells)
 	.fill(null)
-	.map(() => Array(2).fill(false));
+	.map(() => Array(cells - 1).fill(false));
 
 // Generate Horizontal Columns
-const horizontal = Array(2)
+const horizontal = Array(cells - 1)
 	.fill(null)
-	.map(() => Array(3).fill(false));
+	.map(() => Array(cells).fill(false));
 
 console.log(vertical, horizontal);
