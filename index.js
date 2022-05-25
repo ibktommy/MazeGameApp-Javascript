@@ -33,4 +33,14 @@ const grid = Array(3)
 	.fill(null)
 	.map(() => Array(3).fill(false));
 
-console.log(grid);
+// Generate Vertical Columns
+const vertical = Array(3)
+	.fill(null)
+	.map(() => Array(2).fill(false));
+
+// Generate Horizontal Columns
+const horizontal = Array(2)
+	.fill(null)
+	.map(() => Array(3).fill(false));
+
+console.log(vertical, horizontal);
