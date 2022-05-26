@@ -132,6 +132,7 @@ horizontal.forEach((row, rowIndex) => {
 			unitLength,
 			10,
 			{
+				label: "wall",
 				isStatic: true,
 			},
 		);
@@ -153,6 +154,7 @@ vertical.forEach((row, rowIndex) => {
 			10,
 			unitLength,
 			{
+				label: "wall",
 				isStatic: true,
 			},
 		);
@@ -206,7 +208,8 @@ Events.on(engine, "collisionStart", (event) => {
 		const labels = ["ball", "goalObject"];
 
 		if (labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)) {
-			console.log("User Won!");
+			// Setting Back Gravity After The Ball Reached The Goal Object
+			world.gravity.y = 1;
 		}
 	});
 });
