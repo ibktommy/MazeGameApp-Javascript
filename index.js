@@ -176,3 +176,18 @@ World.add(world, endGoalObject);
 // Drawing the Ball that will navigate through the Maze to the End-Goal Object
 const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, { isStatic: true });
 World.add(world, Ball);
+
+document.addEventListener("keydown", (event) => {
+	if (event.code === "ArrowUp") {
+		console.log("Up Arrow");
+	}
+	if (event.code === "ArrowDown") {
+		console.log("Down Arrow");
+	}
+	if (event.code === "ArrowRight") {
+		console.log("Right Arrow");
+	}
+	if (event.code === "ArrowLeft") {
+		console.log("Left Arrow");
+	}
+});
