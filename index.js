@@ -11,6 +11,7 @@ const cells = 3;
 const unitLength = width / cells;
 
 const engine = Engine.create();
+engine.world.gravity.y = 0;
 const { world } = engine;
 const render = Render.create({
 	element: document.body,
@@ -183,18 +184,14 @@ document.addEventListener("keydown", (event) => {
 
 	if (event.code === "ArrowUp") {
 		Body.setVelocity(Ball, { x, y: y - 5 });
-		console.log("Up Arrow");
 	}
 	if (event.code === "ArrowDown") {
 		Body.setVelocity(Ball, { x, y: y + 5 });
-		console.log("Down Arrow");
 	}
 	if (event.code === "ArrowRight") {
 		Body.setVelocity(Ball, { x: x + 5, y });
-		console.log("Right Arrow");
 	}
 	if (event.code === "ArrowLeft") {
 		Body.setVelocity(Ball, { x: x - 5, y });
-		console.log("Left Arrow");
 	}
 });
