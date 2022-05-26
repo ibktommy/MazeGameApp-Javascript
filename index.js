@@ -210,6 +210,13 @@ Events.on(engine, "collisionStart", (event) => {
 		if (labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)) {
 			// Setting Back Gravity After The Ball Reached The Goal Object
 			world.gravity.y = 1;
+
+			// Collapsing the Vertical and Horizontal wall when the Ball Reached the Goal Object
+			world.bodies.forEach((body) => {
+				if (body.label === "wall") {
+					Body.setStatic(body, false);
+				}
+			});
 		}
 	});
 });
