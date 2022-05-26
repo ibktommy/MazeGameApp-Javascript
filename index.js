@@ -77,16 +77,16 @@ const stepThroughCell = (row, column) => {
 
 	// Assemble randomly-ordered list of Neighbours
 	const cellNeighbours = shuffleArray([
-		[row - 1, column], //Neighbour cell at the top
-		[row + 1, column], //Neighbour cell at the bottom
-		[row, column + 1], //Neighbour cell at the right
-		[row, column - 1], //Neighbour cell at the left
+		[row - 1, column, "up"], //Neighbour cell at the top
+		[row + 1, column, "down"], //Neighbour cell at the bottom
+		[row, column + 1, "right"], //Neighbour cell at the right
+		[row, column - 1, "left"], //Neighbour cell at the left
 	]);
 
 	// For Each Neighbours..
 	// We iterate
 	for (let neighbour of cellNeighbours) {
-		const [nextRow, nextColumn] = cellNeighbours;
+		const [nextRow, nextColumn, direction] = cellNeighbours;
 
 		// See if that Neighbour is out of bounds
 		if (nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
