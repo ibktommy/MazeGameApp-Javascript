@@ -7,13 +7,16 @@ const height = 600;
 // Making our Grid Array Values dynamic
 const cells = 3;
 
+// Calculating the lenght of our wall lines
+const unitLength = width / cells;
+
 const engine = Engine.create();
 const { world } = engine;
 const render = Render.create({
 	element: document.body,
 	engine: engine,
 	options: {
-		wireframes: false,
+		wireframes: true,
 		width,
 		height,
 	},
@@ -77,10 +80,10 @@ const stepThroughCell = (row, column) => {
 
 	// Assemble randomly-ordered list of Neighbours
 	const cellNeighbours = shuffleArray([
-		// [row - 1, column, "up"], //Neighbour cell at the top
+		[row - 1, column, "up"], //Neighbour cell at the top
 		[row + 1, column, "down"], //Neighbour cell at the bottom
-		// [row, column + 1, "right"], //Neighbour cell at the right
-		// [row, column - 1, "left"], //Neighbour cell at the left
+		[row, column + 1, "right"], //Neighbour cell at the right
+		[row, column - 1, "left"], //Neighbour cell at the left
 	]);
 
 	// For Each Neighbours..
@@ -108,7 +111,29 @@ const stepThroughCell = (row, column) => {
 		} else if (direction === "down") {
 			horizontal[row][column] = true;
 		}
+
+		stepThroughCell(nextRow, nextColumn);
 	}
 };
 
-stepThroughCell(1, 1);
+stepThroughCell(startRow, startColumn);
+
+horizontal.forEach((row, rowIndex) => {
+	row.forEach((open, columnIndex) => {
+		if (open) {
+			return;
+		}
+
+		const wall = Bodies.rectangle(
+			columnIndex * unitLength + unitLength / 2,
+			rowIndex * unitLength + unitLength,
+			unitLength,
+			10,
+			{
+				isStati: true,
+			},
+		);
+
+		World.add(world, wall);
+	});
+});
