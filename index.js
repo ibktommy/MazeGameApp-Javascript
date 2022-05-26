@@ -5,7 +5,7 @@ const width = 600;
 const height = 600;
 
 // Making our Grid Array Values dynamic
-const cells = 3;
+const cells = 20;
 
 // Calculating the lenght of our wall lines
 const unitLength = width / cells;
@@ -118,6 +118,7 @@ const stepThroughCell = (row, column) => {
 
 stepThroughCell(startRow, startColumn);
 
+// Drawing Horizontal Segments
 horizontal.forEach((row, rowIndex) => {
 	row.forEach((open, columnIndex) => {
 		if (open) {
@@ -130,7 +131,28 @@ horizontal.forEach((row, rowIndex) => {
 			unitLength,
 			10,
 			{
-				isStati: true,
+				isStatic: true,
+			},
+		);
+
+		World.add(world, wall);
+	});
+});
+
+// Drawing Vertical Segments
+vertical.forEach((row, rowIndex) => {
+	row.forEach((open, columnIndex) => {
+		if (open) {
+			return;
+		}
+
+		const wall = Bodies.rectangle(
+			columnIndex * unitLength + unitLength,
+			rowIndex * unitLength + unitLength / 2,
+			10,
+			unitLength,
+			{
+				isStatic: true,
 			},
 		);
 
