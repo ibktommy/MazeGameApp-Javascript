@@ -5,7 +5,7 @@ const width = 600;
 const height = 600;
 
 // Making our Grid Array Values dynamic
-const cells = 20;
+const cells = 3;
 
 // Calculating the lenght of our wall lines
 const unitLength = width / cells;
@@ -159,3 +159,16 @@ vertical.forEach((row, rowIndex) => {
 		World.add(world, wall);
 	});
 });
+
+// Drawing the End Goal Object
+const endGoalObject = Bodies.rectangle(
+	width - unitLength / 2,
+	height - unitLength / 2,
+	unitLength * 0.7,
+	unitLength * 0.7,
+	{
+		isStatic: true,
+	},
+);
+
+World.add(world, endGoalObject);
