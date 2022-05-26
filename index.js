@@ -4,11 +4,13 @@ const { World, Engine, Runner, Render, Bodies, Body, Events } = Matter;
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-// Making our Grid Array Values dynamic
-const cells = 8;
+// Setting the Height And Width of Our Grid Cell
+const cellsHorizontal = 4;
+const cellsVertical = 3;
 
 // Calculating the lenght of our wall lines
-const unitLength = width / cells;
+const unitLengthX = width / cellsHorizontal;
+const unitLengthY = height / cellsVertical;
 
 const engine = Engine.create();
 engine.world.gravity.y = 0;
