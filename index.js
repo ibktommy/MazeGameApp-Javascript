@@ -83,7 +83,21 @@ const stepThroughCell = (row, column) => {
 		[row, column - 1], //Neighbour cell at the left
 	]);
 
-	console.log(cellNeighbours);
+	// For Each Neighbours..
+	// We iterate
+	for (let neighbour of cellNeighbours) {
+		const [nextRow, nextColumn] = cellNeighbours;
+
+		// See if that Neighbour is out of bounds
+		if (nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
+			continue;
+		}
+
+		// If we have visited that Neighbour, continue to next Neighbour
+		if (grid[nextRow][nextColumn]) {
+			continue;
+		}
+	}
 };
 
 stepThroughCell(1, 1);
