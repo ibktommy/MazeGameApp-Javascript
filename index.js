@@ -1,11 +1,11 @@
 const { World, Engine, Runner, Render, Bodies, Body, Events } = Matter;
 
 // Setting our width and height Variable
-const width = 600;
-const height = 600;
+const width = window.innerWidth;
+const height = window.innerHeight;
 
 // Making our Grid Array Values dynamic
-const cells = 15;
+const cells = 8;
 
 // Calculating the lenght of our wall lines
 const unitLength = width / cells;
