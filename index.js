@@ -86,7 +86,7 @@ const stepThroughCell = (row, column) => {
 	// For Each Neighbours..
 	// We iterate
 	for (let neighbour of cellNeighbours) {
-		const [nextRow, nextColumn, direction] = cellNeighbours;
+		const [nextRow, nextColumn, direction] = neighbour;
 
 		// See if that Neighbour is out of bounds
 		if (nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
@@ -100,4 +100,4 @@ const stepThroughCell = (row, column) => {
 	}
 };
 
-stepThroughCell(1, 1);
+stepThroughCell(startRow, startColumn);
