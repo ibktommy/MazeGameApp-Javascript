@@ -78,9 +78,9 @@ const stepThroughCell = (row, column) => {
 	// Assemble randomly-ordered list of Neighbours
 	const cellNeighbours = shuffleArray([
 		// [row - 1, column, "up"], //Neighbour cell at the top
-		// [row + 1, column, "down"], //Neighbour cell at the bottom
+		[row + 1, column, "down"], //Neighbour cell at the bottom
 		// [row, column + 1, "right"], //Neighbour cell at the right
-		[row, column - 1, "left"], //Neighbour cell at the left
+		// [row, column - 1, "left"], //Neighbour cell at the left
 	]);
 
 	// For Each Neighbours..
@@ -103,6 +103,10 @@ const stepThroughCell = (row, column) => {
 			vertical[row][column] = true;
 		} else if (direction === "left") {
 			vertical[row][column - 1] = true;
+		} else if (direction === "up") {
+			horizontal[row - 1][column] = true;
+		} else if (direction === "down") {
+			horizontal[row][column] = true;
 		}
 	}
 };
