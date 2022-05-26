@@ -28,3 +28,17 @@ h1 {
   font-size: 4rem;
   color: #fff;
 }
+
+button {
+  border: .1rem solid #ccc;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: #fff;
+  background: none;
+}
+
+button:focus {
+  background: #fff;
+  color: #000;
+}
