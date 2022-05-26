@@ -172,3 +172,7 @@ const endGoalObject = Bodies.rectangle(
 );
 
 World.add(world, endGoalObject);
+
+// Drawing the Ball that will navigate through the Maze to the End-Goal Object
+const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, { isStatic: true });
+World.add(world, Ball);
