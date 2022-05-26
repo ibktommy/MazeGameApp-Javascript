@@ -5,8 +5,8 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 
 // Setting the Height And Width of Our Grid Cell
-const cellsHorizontal = 4;
-const cellsVertical = 3;
+const cellsHorizontal = 10;
+const cellsVertical = 10;
 
 // Calculating the lenght of our wall lines
 const unitLengthX = width / cellsHorizontal;
@@ -19,7 +19,7 @@ const render = Render.create({
 	element: document.body,
 	engine: engine,
 	options: {
-		wireframes: true,
+		wireframes: false,
 		width,
 		height,
 	},
@@ -38,22 +38,22 @@ const walls = [
 World.add(world, walls);
 
 // Generating the Maze
-const grid = Array(cells)
+const grid = Array(cellsVertical)
 	.fill(null)
-	.map(() => Array(cells).fill(false));
+	.map(() => Array(cellsHorizontal).fill(false));
 
 // Generate Vertical Columns
-const vertical = Array(cells)
+const vertical = Array(cellsVertical)
 	.fill(null)
-	.map(() => Array(cells - 1).fill(false));
+	.map(() => Array(cellsHorizontal - 1).fill(false));
 
 // Generate Horizontal Columns
-const horizontal = Array(cells - 1)
+const horizontal = Array(cellsVertical - 1)
 	.fill(null)
-	.map(() => Array(cells).fill(false));
+	.map(() => Array(cellsHorizontal).fill(false));
 
-const startRow = Math.floor(Math.random() * cells);
-const startColumn = Math.floor(Math.random() * cells);
+const startRow = Math.floor(Math.random() * cellsVertical);
+const startColumn = Math.floor(Math.random() * cellsHorizontal);
 
 // Function to randomize elements in an Array
 const shuffleArray = (arr) => {
@@ -95,7 +95,7 @@ const stepThroughCell = (row, column) => {
 		const [nextRow, nextColumn, direction] = neighbour;
 
 		// See if that Neighbour is out of bounds
-		if (nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
+		if (nextRow < 0 || nextRow >= cellsVertical || nextColumn < 0 || nextColumn >= cellsHorizontal) {
 			continue;
 		}
 
@@ -129,13 +129,16 @@ horizontal.forEach((row, rowIndex) => {
 		}
 
 		const wall = Bodies.rectangle(
-			columnIndex * unitLength + unitLength / 2,
-			rowIndex * unitLength + unitLength,
-			unitLength,
-			10,
+			columnIndex * unitLengthX + unitLengthX / 2,
+			rowIndex * unitLengthY + unitLengthY,
+			unitLengthX,
+			3,
 			{
 				label: "wall",
 				isStatic: true,
+				render: {
+					fillStyle: "yellow",
+				},
 			},
 		);
 
@@ -151,13 +154,16 @@ vertical.forEach((row, rowIndex) => {
 		}
 
 		const wall = Bodies.rectangle(
-			columnIndex * unitLength + unitLength,
-			rowIndex * unitLength + unitLength / 2,
-			10,
-			unitLength,
+			columnIndex * unitLengthX + unitLengthX,
+			rowIndex * unitLengthY + unitLengthY / 2,
+			3,
+			unitLengthY,
 			{
 				label: "wall",
 				isStatic: true,
+				render: {
+					fillStyle: "yellow",
+				},
 			},
 		);
 
@@ -167,22 +173,29 @@ vertical.forEach((row, rowIndex) => {
 
 // Drawing the End Goal Object
 const endGoalObject = Bodies.rectangle(
-	width - unitLength / 2,
-	height - unitLength / 2,
-	unitLength * 0.7,
-	unitLength * 0.7,
+	width - unitLengthX / 2,
+	height - unitLengthY / 2,
+	unitLengthX * 0.7,
+	unitLengthY * 0.7,
 	{
 		isStatic: true,
 		label: "goalObject",
+		render: {
+			fillStyle: "green",
+		},
 	},
 );
 
 World.add(world, endGoalObject);
 
 // Drawing the Ball that will navigate through the Maze to the End-Goal Object
-const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, {
+const ballRadius = Math.min(unitLengthX, unitLengthY) / 4;
+const Ball = Bodies.circle(unitLengthX / 2, unitLengthY / 2, ballRadius, {
 	isStatic: false,
 	label: "ball",
+	render: {
+		fillStyle: "blue",
+	},
 });
 World.add(world, Ball);
 
