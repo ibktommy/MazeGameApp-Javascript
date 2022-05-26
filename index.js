@@ -5,8 +5,8 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 
 // Setting the Height And Width of Our Grid Cell
-const cellsHorizontal = 10;
-const cellsVertical = 10;
+const cellsHorizontal = 3;
+const cellsVertical = 3;
 
 // Calculating the lenght of our wall lines
 const unitLengthX = width / cellsHorizontal;
@@ -232,6 +232,9 @@ Events.on(engine, "collisionStart", (event) => {
 					Body.setStatic(body, false);
 				}
 			});
+
+			// Displaying the Win Message
+			document.querySelector(".winner").classList.remove("hidden");
 		}
 	});
 });
