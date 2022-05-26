@@ -49,6 +49,15 @@ const horizontal = Array(cells - 1)
 const startRow = Math.floor(Math.random() * cells);
 const startColumn = Math.floor(Math.random() * cells);
 
-const stepThroughCell = (row, column) => {};
+const stepThroughCell = (row, column) => {
+	// If the cell as been visited at [row, column], then return
+	if (grid[row][column]) {
+		return;
+	}
+
+	// Mark the cell as being visited
+	grid[row][column] = true;
+};
 
 stepThroughCell(startRow, startColumn);
+console.log(grid);
