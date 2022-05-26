@@ -77,9 +77,9 @@ const stepThroughCell = (row, column) => {
 
 	// Assemble randomly-ordered list of Neighbours
 	const cellNeighbours = shuffleArray([
-		[row - 1, column, "up"], //Neighbour cell at the top
-		[row + 1, column, "down"], //Neighbour cell at the bottom
-		[row, column + 1, "right"], //Neighbour cell at the right
+		// [row - 1, column, "up"], //Neighbour cell at the top
+		// [row + 1, column, "down"], //Neighbour cell at the bottom
+		// [row, column + 1, "right"], //Neighbour cell at the right
 		[row, column - 1, "left"], //Neighbour cell at the left
 	]);
 
@@ -97,7 +97,14 @@ const stepThroughCell = (row, column) => {
 		if (grid[nextRow][nextColumn]) {
 			continue;
 		}
+
+		// Removing A Cell Wall from either Horizontal or Vertical based on our Direction
+		if (direction === "right") {
+			vertical[row][column] = true;
+		} else if (direction === "left") {
+			vertical[row][column - 1] = true;
+		}
 	}
 };
 
-stepThroughCell(startRow, startColumn);
+stepThroughCell(1, 1);
