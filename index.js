@@ -1,11 +1,11 @@
-const { World, Engine, Runner, Render, Bodies, Body } = Matter;
+const { World, Engine, Runner, Render, Bodies, Body, Events } = Matter;
 
 // Setting our width and height Variable
 const width = 600;
 const height = 600;
 
 // Making our Grid Array Values dynamic
-const cells = 3;
+const cells = 5;
 
 // Calculating the lenght of our wall lines
 const unitLength = width / cells;
@@ -169,13 +169,17 @@ const endGoalObject = Bodies.rectangle(
 	unitLength * 0.7,
 	{
 		isStatic: true,
+		label: "goalObject",
 	},
 );
 
 World.add(world, endGoalObject);
 
 // Drawing the Ball that will navigate through the Maze to the End-Goal Object
-const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, { isStatic: false });
+const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, {
+	isStatic: false,
+	label: "ball",
+});
 World.add(world, Ball);
 
 document.addEventListener("keydown", (event) => {
@@ -194,4 +198,15 @@ document.addEventListener("keydown", (event) => {
 	if (event.code === "ArrowLeft") {
 		Body.setVelocity(Ball, { x: x - 5, y });
 	}
+});
+
+// Condition For the Engine Event to Determine if the Ball Has Reached The Goal Object
+Events.on(engine, "collisionStart", (event) => {
+	event.pairs.forEach((collision) => {
+		const labels = ["ball", "goalObject"];
+
+		if (labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)) {
+			console.log("User Won!");
+		}
+	});
 });
