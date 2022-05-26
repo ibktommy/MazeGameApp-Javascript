@@ -1,4 +1,4 @@
-const { World, Engine, Runner, Render, Bodies } = Matter;
+const { World, Engine, Runner, Render, Bodies, Body } = Matter;
 
 // Setting our width and height Variable
 const width = 600;
@@ -174,20 +174,27 @@ const endGoalObject = Bodies.rectangle(
 World.add(world, endGoalObject);
 
 // Drawing the Ball that will navigate through the Maze to the End-Goal Object
-const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, { isStatic: true });
+const Ball = Bodies.circle(unitLength / 2, unitLength / 2, unitLength / 4, { isStatic: false });
 World.add(world, Ball);
 
 document.addEventListener("keydown", (event) => {
+	// Getting the Velocity of the Ball
+	const { x, y } = Ball.velocity;
+
 	if (event.code === "ArrowUp") {
+		Body.setVelocity(Ball, { x, y: y - 5 });
 		console.log("Up Arrow");
 	}
 	if (event.code === "ArrowDown") {
+		Body.setVelocity(Ball, { x, y: y + 5 });
 		console.log("Down Arrow");
 	}
 	if (event.code === "ArrowRight") {
+		Body.setVelocity(Ball, { x: x + 5, y });
 		console.log("Right Arrow");
 	}
 	if (event.code === "ArrowLeft") {
+		Body.setVelocity(Ball, { x: x - 5, y });
 		console.log("Left Arrow");
 	}
 });
