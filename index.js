@@ -49,6 +49,23 @@ const horizontal = Array(cells - 1)
 const startRow = Math.floor(Math.random() * cells);
 const startColumn = Math.floor(Math.random() * cells);
 
+// Function to randomize elements in an Array
+const shuffleArray = (arr) => {
+	let counter = arr.length;
+
+	while (counter > 0) {
+		const index = Math.floor(Math.random() * counter);
+
+		counter--;
+
+		const tempValue = arr[counter];
+		arr[counter] = arr[index];
+		arr[index] = tempValue;
+	}
+
+	return arr;
+};
+
 const stepThroughCell = (row, column) => {
 	// If the cell as been visited at [row, column], then return
 	if (grid[row][column]) {
@@ -59,12 +76,14 @@ const stepThroughCell = (row, column) => {
 	grid[row][column] = true;
 
 	// Assemble randomly-ordered list of Neighbours
-	const cellNeighbours = [
+	const cellNeighbours = shuffleArray([
 		[row - 1, column], //Neighbour cell at the top
 		[row + 1, column], //Neighbour cell at the bottom
 		[row, column + 1], //Neighbour cell at the right
 		[row, column - 1], //Neighbour cell at the left
-	];
+	]);
+
+	console.log(cellNeighbours);
 };
 
-stepThroughCell(startRow, startColumn);
+stepThroughCell(1, 1);
