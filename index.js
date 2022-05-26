@@ -5,7 +5,7 @@ const width = 600;
 const height = 600;
 
 // Making our Grid Array Values dynamic
-const cells = 5;
+const cells = 15;
 
 // Calculating the lenght of our wall lines
 const unitLength = width / cells;
@@ -189,16 +189,16 @@ document.addEventListener("keydown", (event) => {
 	const { x, y } = Ball.velocity;
 
 	if (event.code === "ArrowUp") {
-		Body.setVelocity(Ball, { x, y: y - 5 });
+		Body.setVelocity(Ball, { x, y: y - 3 });
 	}
 	if (event.code === "ArrowDown") {
-		Body.setVelocity(Ball, { x, y: y + 5 });
+		Body.setVelocity(Ball, { x, y: y + 3 });
 	}
 	if (event.code === "ArrowRight") {
-		Body.setVelocity(Ball, { x: x + 5, y });
+		Body.setVelocity(Ball, { x: x + 3, y });
 	}
 	if (event.code === "ArrowLeft") {
-		Body.setVelocity(Ball, { x: x - 5, y });
+		Body.setVelocity(Ball, { x: x - 3, y });
 	}
 });
 
